@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="./node_modules/jasmine-core/lib/jasmine-core/jasmine.css"/>
+    <link rel="stylesheet" href="./node_modules/example-component/stylesheet.css"/>
+  </head>
+  <body>
+    <script src="./node_modules/jasmine-core/lib/jasmine-core/jasmine.js"></script>
+    <script src="./node_modules/jasmine-core/lib/jasmine-core/jasmine-html.js"></script>
+    <script src="./node_modules/jasmine-core/lib/jasmine-core/boot.js"></script>
+    <script src="./node_modules/ace-builds/src-noconflict/ace.js"></script>
+    <script src="./node_modules/example-component/index.js"></script>
+    <script src="./node_modules/get-json/index.js"></script>
+    <script src="${COMPONENT_PATH}/index.js"></script>
+    <script src="${COMPONENT_PATH}/spec.js"></script>
+    <script>
+        getJson("${COMPONENT_PATH}/package.json", function (package) {
+          document.body.appendChild(ExampleComponent({
+            name: package.name,
+            version: package.version,
+            description: package.description,
+            component: ${COMPONENT_NAME},
+            data: package.component.data,
+          }));
+        });
+    </script>
+  </body>
+</html>

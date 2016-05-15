@@ -1,0 +1,24 @@
+{
+  "name": "component-workshop",
+  "version": "0.0.1",
+  "main": "server.js",
+  "scripts": {},
+  "description": "Create fast development feedback loops using the web component workshop.",
+  "keywords": ["component", "workshop", "html", "view"],
+  "homepage": "https://github.com/andrewshawcare/component-workshop",
+  "bugs": {
+    "url": "https://github.com/andrewshawcare/component-workshop/issues",
+    "email": "andrewshawcare@gmail.com"
+  },
+  "license": "MIT",
+  "author": "Andrew Shaw Care <andrewshawcare@gmail.com> (https://github.com/andrewshawcare)",
+  "repository": "andrewshawcare/component-workshop",
+  "dependencies": {
+    "example-component": "^0.0.4",
+    "finalhandler": "^0.4.1",
+    "get-json": "andrewshawcare/get-json#18cf1b4",
+    "jasmine-core": "*",
+    "livereload": "*",
+    "serve-static": "^1.10.2"
+  }
+}

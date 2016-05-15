@@ -1,0 +1,12 @@
+version: "2"
+services:
+  workshop:
+    build: .
+    environment:
+      - COMPONENT_PATH=./test-component
+      - COMPONENT_NAME=TestComponent
+    ports:
+      - '80:80'
+      - '35729:35729'
+    volumes:
+      - ./:/usr/src/app
