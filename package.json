@@ -16,7 +16,6 @@
   "dependencies": {
     "example-component": "^0.0.7",
     "finalhandler": "^0.4.1",
-    "get-json": "andrewshawcare/get-json#18cf1b4",
     "jasmine-core": "*",
     "livereload": "*",
     "requirejs": "^2.2.0",

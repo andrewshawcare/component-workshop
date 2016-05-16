@@ -6,4 +6,6 @@ require("http").createServer((request, response) => {
   );
 }).listen(80);
 
-require("livereload").createServer().watch(__dirname);
+require("livereload").createServer({
+  exts: ["html", "css", "js", "png", "gif", "jpg", "json"]
+}).watch(__dirname);
