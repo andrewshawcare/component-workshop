@@ -1,5 +1,7 @@
-describe("Test Component", function () {
-  it("is an element", function () {
-    expect(TestComponent() instanceof Element).toBe(true);
+define(["./index"], function (TestComponent) {
+  describe("Test Component", function () {
+    it("is an element", function () {
+      expect(TestComponent() instanceof Element).toBe(true);
+    });
   });
 });

@@ -14,12 +14,14 @@
   "author": "Andrew Shaw Care <andrewshawcare@gmail.com> (https://github.com/andrewshawcare)",
   "repository": "andrewshawcare/component-workshop",
   "dependencies": {
-    "example-component": "^0.0.4",
+    "example-component": "^0.0.7",
     "finalhandler": "^0.4.1",
     "get-json": "andrewshawcare/get-json#18cf1b4",
     "jasmine-core": "*",
     "livereload": "*",
     "requirejs": "^2.2.0",
+    "requirejs-json": "^0.0.3",
+    "requirejs-text": "^2.0.12",
     "serve-static": "^1.10.2"
   }
 }

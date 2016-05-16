@@ -18,6 +18,8 @@
     "data": {
       "name": "test-component"
     },
-    "dependencies": {}
+    "dependencies": {
+      "requirejs": "^2.2.0"
+    }
   }
 }
