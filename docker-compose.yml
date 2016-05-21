@@ -4,7 +4,6 @@ services:
     build: .
     environment:
       - COMPONENT_PATH=./test-component
-      - COMPONENT_NAME=TestComponent
     ports:
       - '80:80'
       - '35729:35729'
