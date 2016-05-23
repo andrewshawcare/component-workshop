@@ -7,5 +7,6 @@ require("http").createServer((request, response) => {
 }).listen(80);
 
 require("livereload").createServer({
+  exclusions: ["node_modules/**"],
   exts: ["html", "css", "js", "png", "gif", "jpg", "json"]
 }).watch(__dirname);
