@@ -13,7 +13,6 @@ There is an expectation that you have the following project structure:
 The `docker-compose.yml` file should reference this image and set the following environment variables:
 
 * `COMPONENT_PATH`: The path to the component source (e.g. `./test-component`)
-* `COMPONENT_NAME`: The name of the component as assigned in `index.js` (e.g. `TestComponent`)
 
 You will likely want to map your component source into the `node_modules` folder at the appropriate location so that it mirrors a deployment environment.
 
