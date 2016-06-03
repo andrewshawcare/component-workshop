@@ -11,11 +11,11 @@
       requirejs.config({
         baseUrl: "/",
         paths: {
-          "node_modules": "./node_modules",
-          "ace": "node_modules/ace-builds/src",
-          "json": "node_modules/requirejs-json/json",
-          "text": "node_modules/requirejs-text/text",
-          "jasmine": "node_modules/jasmine-core/lib/jasmine-core"
+          "node_modules": "./component/node_modules",
+          "ace": "./node_modules/ace-builds/src",
+          "json": "./node_modules/requirejs-json/json",
+          "text": "./node_modules/requirejs-text/text",
+          "jasmine": "./node_modules/jasmine-core/lib/jasmine-core"
         },
         shim: {
           "boot": ["jasmine/jasmine", "jasmine/jasmine-html"],
@@ -24,10 +24,10 @@
       });
       requirejs(["boot"], function () {
         require([
-          "node_modules/example-component/index",
-          "./component/index",
+          "./node_modules/example-component/index.js",
+          "./component/index.js",
           "json!./component/package.json",
-          "./component/spec"
+          "./component/spec.js"
         ], function (
           ExampleComponent,
           Component,
