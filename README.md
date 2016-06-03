@@ -10,11 +10,7 @@ There is an expectation that you have the following project structure:
 * `package.json`
 * `spec.js`
 
-The `docker-compose.yml` file should reference this image and set the following environment variables:
-
-* `COMPONENT_PATH`: The path to the component source (e.g. `./test-component`)
-
-You will likely want to map your component source into the `node_modules` folder at the appropriate location so that it mirrors a deployment environment.
+The `docker-compose.yml` file for components should mount a volume of the source directory to `/usr/src/app/component`.
 
 Reference the `test-component` directory in this project to figure out how to structure the remaining files.
 

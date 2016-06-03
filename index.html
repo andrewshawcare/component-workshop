@@ -25,9 +25,9 @@
       requirejs(["boot"], function () {
         require([
           "node_modules/example-component/index",
-          "${COMPONENT_PATH}/index",
-          "json!${COMPONENT_PATH}/package.json",
-          "${COMPONENT_PATH}/spec"
+          "./component/index",
+          "json!./component/package.json",
+          "./component/spec"
         ], function (
           ExampleComponent,
           Component,
