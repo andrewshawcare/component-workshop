@@ -14,7 +14,7 @@
   "author": "Andrew Shaw Care <andrewshawcare@gmail.com> (https://github.com/andrewshawcare)",
   "repository": "andrewshawcare/component-workshop",
   "dependencies": {
-    "example-component": "^0.0.9",
+    "example-component": "^0.0.12",
     "finalhandler": "^0.4.1",
     "jasmine-core": "*",
     "livereload": "*",
