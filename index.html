@@ -23,17 +23,18 @@
       });
       requirejs(["boot"], (Boot) => {
         require([
-          "./generate-component-link-tree/index.js",
+          "./generate-navigation/index.js",
           "./node_modules/example-component/index.js",
           "./sidebar-component/index.js",
           "json!./component/package.json"
-        ], (generateComponentLinkTree, ExampleComponent, SidebarComponent, package) => {
-          generateComponentLinkTree({
+        ], (generateNavigation, ExampleComponent, SidebarComponent, package) => {
+          generateNavigation({
             componentId: package.name,
             dependencyIds: package.component.dependencies
           })
           .then((navigation) => {
-            let navigate = (link) => {
+            let onNavigate = (link) => {
+              history.pushState(link, link.title, link.url);
               Boot();
               require([
                 "node_modules/" + link.title + "/index",
@@ -46,10 +47,7 @@
                     heading: "Component Workshop"
                   },
                   navigation,
-                  onNavigate: (link) => {
-                    history.pushState(link, link.title, link.url);
-                    navigate(link);
-                  }
+                  onNavigate
                 }));
                 document.body.appendChild(ExampleComponent({
                   name: package.name,
@@ -62,9 +60,17 @@
               });
             };
             window.onpopstate = ({state}) => {
-              navigate(state);
+              onNavigate(state);
             }
-            navigate(navigation);
+            if (window.location.search) {
+              let link = {
+                title: window.location.search.match(/\?component=([\w|-]+)/)[1],
+                url: window.location.search
+              };
+              onNavigate(link);
+            } else {
+              onNavigate(navigation);
+            }
           });
         });
       });
