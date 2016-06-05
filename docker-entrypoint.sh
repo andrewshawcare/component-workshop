@@ -1,5 +1,5 @@
 #!/bin/bash
 set -e
-npm install
 npm install ./component
+npm link ./component
 exec npm start
