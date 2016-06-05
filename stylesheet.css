@@ -9,6 +9,7 @@ body {
 }
 
 .sidebar {
+  min-width: 18.1rem;
   padding: 0 1rem;
   background-color: #f6f6f6;
 }
