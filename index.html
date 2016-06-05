@@ -21,25 +21,52 @@
           "jasmine/jasmine-html": ["jasmine/jasmine"]
         }
       });
-      requirejs(["boot"], function () {
+      requirejs(["boot"], () => {
         require([
+          "./generate-component-link-tree/index.js",
           "./node_modules/example-component/index.js",
-          "./component/index.js",
+          "./sidebar-component/index.js",
           "json!./component/package.json",
-          "./component/spec.js"
-        ], function (
-          ExampleComponent,
-          Component,
-          package
-        ) {
-          document.body.appendChild(ExampleComponent({
-            name: package.name,
-            version: package.version,
-            description: package.description,
-            component: Component,
-            data: package.component.data,
-          }));
-          jasmine.getEnv().load();
+          "boot"
+        ], (generateComponentLinkTree, ExampleComponent, SidebarComponent, package, Boot) => {
+          generateComponentLinkTree({
+            componentId: package.name,
+            dependencyIds: package.component.dependencies
+          })
+          .then((navigation) => {
+            let navigate = (link) => {
+              Boot();
+              require([
+                "node_modules/" + link.title + "/index",
+                "json!node_modules/" + link.title + "/package.json",
+                "node_modules/" + link.title + "/spec.js?" + new Date().getTime() // TODO: This downloads every time, need to cache specs somehow
+              ], (Component, package) => {
+                document.body.innerHTML = "";
+                document.body.appendChild(SidebarComponent({
+                  header: {
+                    heading: "Component Workshop"
+                  },
+                  navigation,
+                  onNavigate: (link) => {
+                    history.pushState(link, link.title, link.url);
+                    navigate(link);
+                  }
+                }));
+                document.body.appendChild(ExampleComponent({
+                  name: package.name,
+                  version: package.version,
+                  description: package.description,
+                  component: Component,
+                  data: package.component.data,
+                }));
+                jasmine.getEnv().load();
+              });
+            };
+            window.onpopstate = ({state}) => {
+              navigate(state);
+            }
+            navigate(navigation);
+          });
         });
       });
     </script>

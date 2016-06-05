@@ -12,14 +12,13 @@
   "license": "MIT",
   "author": "Andrew Shaw Care <andrewshawcare@gmail.com> (https://github.com/andrewshawcare)",
   "repository": "andrewshawcare/test-component",
-  "dependencies": {},
+  "dependencies": {
+    "requirejs": "^2.2.0",
+    "recursive-component": "andrewshawcare/recursive-component"
+  },
   "devDependencies": {},
   "component": {
-    "data": {
-      "name": "test-component"
-    },
-    "dependencies": {
-      "requirejs": "^2.2.0"
-    }
+    "dependencies": ["recursive-component"],
+    "data": {"name": "test-component"}
   }
 }
