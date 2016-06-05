@@ -4,7 +4,7 @@ define([], function () {
     var name = args.name || "no-name";
 
     var element = document.createElement("div");
-    element.innerText = name;
+    element.textContent = name;
 
     return element;
   };
