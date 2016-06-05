@@ -21,14 +21,13 @@
           "jasmine/jasmine-html": ["jasmine/jasmine"]
         }
       });
-      requirejs(["boot"], () => {
+      requirejs(["boot"], (Boot) => {
         require([
           "./generate-component-link-tree/index.js",
           "./node_modules/example-component/index.js",
           "./sidebar-component/index.js",
-          "json!./component/package.json",
-          "boot"
-        ], (generateComponentLinkTree, ExampleComponent, SidebarComponent, package, Boot) => {
+          "json!./component/package.json"
+        ], (generateComponentLinkTree, ExampleComponent, SidebarComponent, package) => {
           generateComponentLinkTree({
             componentId: package.name,
             dependencyIds: package.component.dependencies
