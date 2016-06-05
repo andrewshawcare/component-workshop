@@ -9,9 +9,8 @@ body {
 }
 
 .sidebar {
-  width: 18.1rem;
+  min-width: 18.1rem;
   padding: 0 1rem;
-  background-color: #f6f6f6;
 }
 
 .navigation .link.tree {
@@ -33,11 +32,14 @@ body {
 .example > .data {
   width: 50%;
   min-height: 50vh;
+  border-right: 1px solid #e8e8e8;
+  border-top: 1px solid #e8e8e8;
 }
 
 .example > .preview {
   width: 50%;
   min-height: 50vh;
+  border-top: 1px solid #e8e8e8;
 }
 
 .example > .spec {
