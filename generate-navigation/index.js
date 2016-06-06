@@ -1,10 +1,11 @@
-define([], () =>
-  function generateComponentLinkTree({
-    componentId,
-    dependencyIds = [],
-    componentLinkTree = {}
-  }) {
-    return new Promise((resolve, reject) => {
+define([], function () {
+  return function generateNavigation(args) {
+    var args = args || {};
+    var componentId = args.componentId || "";
+    var dependencyIds = args.dependencyIds || [];
+    var componentLinkTree = args.componentLinkTree || {};
+
+    return new Promise(function (resolve, reject) {
       componentLinkTree = {
         title: componentId,
         url: "?component=" + componentId,
@@ -15,21 +16,22 @@ define([], () =>
         resolve(componentLinkTree);
       }
 
-      let dependencyPackagePaths = dependencyIds.map(dependencyId =>
-        "json!./node_modules/" + dependencyId + "/package.json"
-      );
+      var dependencyPackagePaths = dependencyIds.map(function (dependencyId) {
+        return "json!./node_modules/" + dependencyId + "/package.json";
+      });
 
-      require(dependencyPackagePaths, (...packages) => {
-        Promise.all(packages.map(package =>
-          generateComponentLinkTree({
+      require(dependencyPackagePaths, function () {
+        var packages = Array.from(arguments);
+        Promise.all(packages.map(function (package) {
+          return generateNavigation({
             componentId: package.name,
             dependencyIds: package.component.dependencies
-          })
-        )).then((links) => {
+          });
+        })).then(function (links) {
           Array.prototype.push.apply(componentLinkTree.links, links);
           resolve(componentLinkTree);
         });
       });
     });
-  }
-);
+  };
+});

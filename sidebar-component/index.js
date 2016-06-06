@@ -1,13 +1,18 @@
-define(["../navigation-component/index.js"], (NavigationComponent) =>
-  ({header, navigation, onNavigate}) => {
-    let sidebarElement = document.createElement("article");
+define(["../navigation-component/index.js"], function (NavigationComponent) {
+  return function (args) {
+    var args = args || {};
+    var header = args.header || {};
+    var navigation = args.navigation || {};
+    var onNavigate = args.onNavigate || function () {};
+
+    var sidebarElement = document.createElement("article");
     sidebarElement.classList.add("sidebar");
 
-    let headerElement = document.createElement("header");
+    var headerElement = document.createElement("header");
     headerElement.classList.add("header");
     sidebarElement.appendChild(headerElement);
 
-    let headingElement = document.createElement("h1");
+    var headingElement = document.createElement("h1");
     headingElement.classList.add("heading");
     headingElement.textContent = header.heading;
     headerElement.appendChild(headingElement);
@@ -16,4 +21,4 @@ define(["../navigation-component/index.js"], (NavigationComponent) =>
 
     return sidebarElement;
   }
-);
+});

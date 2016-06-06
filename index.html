@@ -21,33 +21,33 @@
           "jasmine/jasmine-html": ["jasmine/jasmine"]
         }
       });
-      requirejs(["boot"], (Boot) => {
+      requirejs(["boot"], function (Boot) {
         require([
           "./generate-navigation/index.js",
           "./node_modules/example-component/index.js",
           "./sidebar-component/index.js",
           "json!./component/package.json"
-        ], (generateNavigation, ExampleComponent, SidebarComponent, package) => {
+        ], function (generateNavigation, ExampleComponent, SidebarComponent, package) {
           generateNavigation({
             componentId: package.name,
             dependencyIds: package.component.dependencies
           })
-          .then((navigation) => {
-            let onNavigate = (link) => {
+          .then(function (navigation) {
+            var onNavigate = function (link) {
               history.pushState(link, link.title, link.url);
               Boot();
               require([
                 "node_modules/" + link.title + "/index",
                 "json!node_modules/" + link.title + "/package.json",
                 "node_modules/" + link.title + "/spec.js?" + new Date().getTime() // TODO: This downloads every time, need to cache specs somehow
-              ], (Component, package) => {
+              ], function (Component, package) {
                 document.body.innerHTML = "";
                 document.body.appendChild(SidebarComponent({
                   header: {
                     heading: "Component Workshop"
                   },
-                  navigation,
-                  onNavigate
+                  navigation: navigation,
+                  onNavigate: onNavigate
                 }));
                 document.body.appendChild(ExampleComponent({
                   name: package.name,
@@ -59,11 +59,11 @@
                 jasmine.getEnv().load();
               });
             };
-            window.onpopstate = ({state}) => {
-              onNavigate(state);
+            window.onpopstate = function (event) {
+              onNavigate(event.state);
             }
             if (window.location.search) {
-              let link = {
+              var link = {
                 title: window.location.search.match(/\?component=([\w|-]+)/)[1],
                 url: window.location.search
               };

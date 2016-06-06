@@ -1,17 +1,17 @@
-define([], () =>
-  (rootLink, onNavigate) => {
-    let LinkTree = (link, onNavigate) => {
-      let linkTreeElement = document.createElement("ul");
+define([], function () {
+  return function (rootLink, onNavigate) {
+    var LinkTree = function (link, onNavigate) {
+      var linkTreeElement = document.createElement("ul");
       linkTreeElement.classList.add("link", "tree");
 
-      let linkItemElement = document.createElement("li");
+      var linkItemElement = document.createElement("li");
       linkItemElement.classList.add("link", "item");
 
-      let anchorElement = document.createElement("a");
+      var anchorElement = document.createElement("a");
       anchorElement.textContent = link.title;
       anchorElement.href = link.url;
       anchorElement.dataset.link = JSON.stringify(link);
-      anchorElement.addEventListener("click", (event) => {
+      anchorElement.addEventListener("click", function (event) {
         event.stopPropagation();
         event.preventDefault();
         onNavigate(JSON.parse(event.target.dataset.link));
@@ -19,7 +19,7 @@ define([], () =>
       linkItemElement.appendChild(anchorElement);
 
       if (link.links) {
-        link.links.forEach(link => {
+        link.links.forEach(function (link) {
           linkItemElement.appendChild(LinkTree(link, onNavigate))
         });
       }
@@ -29,11 +29,11 @@ define([], () =>
       return linkTreeElement;
     }
 
-    let navigationElement = document.createElement("nav");
+    var navigationElement = document.createElement("nav");
     navigationElement.classList.add("navigation");
 
     navigationElement.appendChild(LinkTree(rootLink, onNavigate));
 
     return navigationElement;
-  }
-);
+  };
+});
