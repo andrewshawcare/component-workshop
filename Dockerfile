@@ -23,4 +23,7 @@ RUN npm install
 
 COPY . .
 
-ENTRYPOINT ["./docker-entrypoint.sh"]
+RUN cp -r ./test-component/ ./component
+VOLUME ["/usr/src/app/component"]
+
+ENTRYPOINT ["/sbin/my_init", "--", "./docker-entrypoint.sh"]
