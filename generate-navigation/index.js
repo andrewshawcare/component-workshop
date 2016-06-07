@@ -3,17 +3,17 @@ define([], function () {
     var args = args || {};
     var componentId = args.componentId || "";
     var dependencyIds = args.dependencyIds || [];
-    var componentLinkTree = args.componentLinkTree || {};
+    var navigation = {};
 
     return new Promise(function (resolve, reject) {
-      componentLinkTree = {
+      navigation = {
         title: componentId,
         url: "?component=" + componentId,
         links: []
       };
 
       if (dependencyIds.length === 0) {
-        resolve(componentLinkTree);
+        resolve(navigation);
       }
 
       var dependencyPackagePaths = dependencyIds.map(function (dependencyId) {
@@ -22,14 +22,15 @@ define([], function () {
 
       require(dependencyPackagePaths, function () {
         var packages = Array.from(arguments);
-        Promise.all(packages.map(function (package) {
+        var linkPromises = packages.map(function (package) {
           return generateNavigation({
             componentId: package.name,
             dependencyIds: package.component.dependencies
           });
-        })).then(function (links) {
-          Array.prototype.push.apply(componentLinkTree.links, links);
-          resolve(componentLinkTree);
+        });
+        Promise.all(linkPromises).then(function (links) {
+          Array.prototype.push.apply(navigation.links, links);
+          resolve(navigation);
         });
       });
     });

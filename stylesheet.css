@@ -8,43 +8,43 @@ body {
   display: flex;
 }
 
-.sidebar {
+body > .sidebar {
   min-width: 18.1rem;
   padding: 0 1rem;
 }
 
-.navigation .link.tree {
+body > .sidebar .navigation .link.tree {
   margin: 0;
   padding: 0 0 0 1rem;
 }
 
-.example {
+body > .example {
   display: flex;
   flex-wrap: wrap;
   flex-grow: 2;
 }
 
-.example > .header {
+body > .example > .header {
   width: 100%;
 }
 
-.example > .data {
+body > .example > .data {
   width: 50%;
   min-height: 50vh;
   border-right: 1px solid #e8e8e8;
   border-top: 1px solid #e8e8e8;
 }
 
-.example > .preview {
+body > .example > .preview {
   width: 50%;
   min-height: 50vh;
   border-top: 1px solid #e8e8e8;
 }
 
-.example > .spec {
+body > .example > .spec {
   width: 100%;
 }
 
-.spec > .jasmine_html-reporter {
+body > .example > .spec > .jasmine_html-reporter {
   margin: 0;
 }
