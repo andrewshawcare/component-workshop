@@ -15,7 +15,7 @@
   "repository": "andrewshawcare/component-workshop",
   "dependencies": {
     "example-component": "^0.0.12",
-    "finalhandler": "^0.4.1",
+    "finalhandler": "^1.1.2",
     "jasmine-core": "*",
     "livereload": "*",
     "requirejs": "^2.2.0",
